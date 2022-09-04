@@ -1,0 +1,166 @@
+#anima {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  width: 90%;
+  height: 300px;
+  animation: gradient 15s ease infinite;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 300px;
+  color: #fafafa;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.cont-mid {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+#bgdia {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  width: 100%;
+  color: white;
+  animation: gradient 12s ease infinite;
+}
+#bgdias {
+  background: linear-gradient(-45deg, #f35e30, #f11b6d, #0fade7, #059271);
+  background-size: 400% 400%;
+  width: 100%;
+  color: white;
+  animation: gradient 12s ease infinite;
+}
+
+#bgimages img {
+  transform: scale(0.5);
+  transition: 0.2s linear;
+}
+#bgimages:hover img {
+  transform: scale(1);
+  transition: 0.2s linear;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.header2 {
+  height: 100vh;
+  text-align: center;
+  background-size: cover;
+}
+
+header {
+  position: relative;
+  background:url('/media/images/backg.jpg') no-repeat center center fixed;
+  height: 100vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+}
+header .container {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+#myvideo {
+  position: fixed;
+  right: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  z-index: 1000;
+}
+.center-text-header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+}
+.center-text-small {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bolder;
+}
+#msg {
+  margin-top: 50px;
+  z-index: 2550;
+}
+.blogform p label {
+  font-weight: bolder;
+  color: #1c1c1e;
+  text-transform: uppercase;
+}
+
+.django-ckeditor-widget-dark {
+  color: #fafafa !important;
+  background-color: #1c1c1c !important;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+#myInput {
+  display: hidden;
+}
+.alert {
+  z-index: 1500;
+}

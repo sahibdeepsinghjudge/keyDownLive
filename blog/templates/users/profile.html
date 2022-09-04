@@ -1,0 +1,107 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<style>
+    .profile-nav{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .profile-li{
+        max-width:120px;
+        min-width: 100px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        margin-right: 5px;
+        border-radius: 10px;
+    }
+    .active{    
+        color: #0a84ff;
+    }
+</style>
+<br>
+<div class="blog-data bg-white">
+
+<div class="card bg-white" style="width: 18rem; margin:auto;">
+    <img class="card-img-top" src="{{userData.image}}"  alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><b>{{user.first_name}}{{user.last_name}}</b></h5>
+    <p class="text-iosgray">{{user.username}}</p>
+      <p class="card-text">{{userData.about}}</p>
+      <p>Joined <b>keyDown</b> on {{user.date_joined|date:"M d, Y" }}</p>
+      <span ><a href="/logout/" class="text-danger">Logout</a></span>
+
+
+    </div>
+  </div >
+
+</div>
+
+
+<div class=" bg-ioswhite">  
+    <div class="container py-2">
+            <div class="user-details mt-2 text-small">
+            </div>
+            <h2>Blogs</h2>
+            <div class="my-blogs blog-data">
+                
+            </div>
+            {% if request.user.username == user.username  %}
+            <div class="container text-center rounded">
+                
+                <a href="{% url 'create-blog-one' %}"><button class="btnios ios-pr">Create blog</button></a>
+            </div>
+            {% endif %}
+            
+        <input type="hidden" value="{{user.username}}" class="username-input"/>
+   
+    </div>         
+    
+</div>
+<script>
+    var blog_count = 0;
+function getBlogs(){
+        const username = $(".username-input").val()
+        $.get("/blogs/"+username,function(data){
+            if(data['blogs'].length>0){
+                for(var i =0; i<data['blogs'].length;i++){
+               
+                    var item = `
+                    <div class="blog-info-det-main bg-ioswhite p-2 rounded-lg">
+                        <a href="/blog/${data['blogs'][i].slug}/" class="text-iosdark">
+                        <div class="flex-box ">
+                            <h2 class="text-iosgray mr-2">${i+1}</h2>
+                            <div>
+                            <span class="tags-${i+1} tags">
+                                <input type="hidden" value="${data['blogs'][i].tags}" class="tags-holder-${i+1}"/>
+                            </span>
+                        <div>
+                        <span class="mt-1 title-blog blog-text text-iosdark">${data['blogs'][i].title}</span>
+                    </div>
+                    
+                        <span class="text-iosgray">${data['blogs'][i].date}</span> 
+                    </div> 
+                    </div>
+                </a>
+                <div>
+                    </div>
+                    </div>
+                    
+                    `
+                $('.my-blogs').append(item)
+                item = ``
+                blog_count++;
+                }
+            }
+            else{
+                item = `<div class="container text-center rounded">
+                    <h4 class="text-iosgray">No Blogs,Stories,Drafts</h4>
+                </div>`
+                $('.my-blogs').append(item)
+            }
+        })
+    }
+getBlogs()
+</script>
+{% endblock content %}

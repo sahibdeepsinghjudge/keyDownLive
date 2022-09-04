@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<link
+rel="Stylesheet"
+href="/media/asmoh/ios.css"
+/>
+
+<link rel="Stylesheet" href="/media/asmoh/style.css"/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="Stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  #abc{
+    height: 101vh; width:100%; background:linear-gradient(to bottom right,#FFA82D, #c94a00);animation: gradientss 5s ease infinite;
+    background-size: 400% 400%;
+    margin-top: -25px;
+  }
+  
+  @keyframes gradientss {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
+  </head>
+  <body >
+    <div id="abc">
+    {% include 'home/darkmode.html' %}
+    <div class="container mt-4" >
+      {% if messages %}
+      {% for message in messages %}
+    <div class="alert  alert-{{ message.tags }}" id="msg">
+      {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    </div>
+<div class="header-top  text-light mt-4 ml-4"><br><h1 class="font-weight-bold">       The Paradise Creations</h1></div>
+    <div class="cont" style="position: absolute;
+     top:50%;
+     left:50%;
+     transform:translate(-50%,-50%); 
+     text-align:center;">
+      <h1 class="text-light font-weight-bold" style="font-size: 45pt;" id="hur">Hurray! we will be live in </h1>
+      <section class="mt-4  p-2 rounded" id="axb" style="display: flex;justify-content:center;">
+      
+        <p id="days"></p>
+        <p id="hours"></p>
+        <p id="mins"></p>
+        <p id="secs"></p>
+      
+    </section>
+    <p id="demo" ></p>
+    <h5 class="h5 my-3 text-iosdark">Connect with us!</h5>
+    <div class="cont" style="display: flex; justify-content:center">
+    <h3><a href="https://www.facebook.com/The.Paradise.Creations"><i class="fa fa-facebook mx-3 text-iosdark" aria-hidden="true"></i></a></h3>
+  <h3><a href="https://www.instagram.com/the_paradise_creations/" ><i class="fa fa-instagram mx-3 text-iosdark" aria-hidden="true"></i></a></h3>
+  <h3><a href="https://www.youtube.com/channel/UCcHJTxed3jLCzGfziiFn2Cg"><i class="fa fa-youtube-play mx-3 text-iosdark" aria-hidden="true"></i></a></h3></div>
+    </div>
+    <div class="fixed-bottom container-fluid mt-4 pt-3 pb-1" style="margin-top: 100vh;">
+    <div class="mt-1 text-center text-iosdark">
+      This website is created by <a href="" class="font-weight-bold">JWD</a>
+      <p>JWD <span class="text-iosprimary font-weight-bold">Pro</span></p>
+    </div>
+  
+    
+    
+  </div>
+  
+</div>
+
+  </body>
+  <script src="/media/asmoh/ios.js"></script>
+  <script src="/media/asmoh/script.js"></script>
+  <script src="/media/asmoh/dark.js"></script>
+  <script src="/media/asmoh/type.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script>
+    setTimeout(function () {
+      if ($("#msg").length > 0) {
+        $("#msg").remove();
+      }
+    }, 2500);
+    setTimeout(function () {
+      if ($(".navsm-warning").length > 0) {
+        $(".navsm-warning").remove();
+      }
+    }, 2500);
+    setTimeout(function () {
+      if ($(".navsm-success").length > 0) {
+        $(".navsm-success").remove();
+      }
+    }, 2500);
+    
+    function myFunction() {
+      /* Get the text field */
+      var copyText = document.getElementById("myInput");
+    
+      /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+    
+      /* Alert the copied text */
+      alert("Copied the text: " + copyText.value);
+    }
+  </script>
+  <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("June 1, 2021 13:53:25").getTime();
+    
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+    
+      // Get today's date and time
+      var now = new Date().getTime();
+    
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+    
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+      // Display the result in the element with id="demo"
+      document.getElementById('days').innerHTML=`<span class = "rounded p-4 bg-dark font-weight-bold ml-2 text-light">${days}d</span>`;
+      document.getElementById('hours').innerHTML=`<span class = "rounded p-4 bg-dark font-weight-bold ml-2 text-light">${hours}h</span> `;
+      document.getElementById('mins').innerHTML=`<span class = "rounded p-4 bg-dark font-weight-bold ml-2 text-light">${minutes}m</span> `;
+      document.getElementById('secs').innerHTML=` <span class = "rounded p-4 bg-dark font-weight-bold ml-2 text-light">${seconds}s</span> `;
+     
+      
+    
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = `<a href="/home"><button class="btnios ios-pr-light text-iosprimary">Home</button></a>`;
+        $('#axb').removeClass('bg-light');
+        $('#axb').html(" ");
+        document.getElementById("hur").innerHTML = "We are live now!";
+      }
+    }, 1000);
+    </script>
+</html>

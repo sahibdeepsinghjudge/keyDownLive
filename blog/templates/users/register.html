@@ -1,0 +1,82 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<style>
+    .buttons{
+        border:none;
+        border-radius: 10px;
+        width: 350px;
+        max-width: 350px;
+        min-width: 200px;
+        height: 40px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    .login-btn{
+        background-color: rgba(255, 255, 255, 0);
+        border:1px solid gray;
+        border-radius: 10px;
+        width: 350px;
+        max-width: 350px;
+        min-width: 200px;
+        height: 40px;
+        font-weight: 600;
+        margin-top: 10px;
+        transition: 0.2s linear;
+    }
+    .login-btn:hover{
+        background-color: #0a84ff;
+        border:none;
+        color: white;
+        transition: 0.2s linear;
+    }
+    .register-btn{
+        background-color: #0a84ff;
+        border:none;
+        color: white;
+    }
+</style>
+<div class="cont-mid bg-ioswhite shadow-sm p-4" style="min-width:400px; border-radius:10px;" >
+            <h5>Create New Account</h5>
+            <hr>
+            <form action="{% url 'register-auth-view' %}" method="post" class="ios-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <h4>fullname</h4>
+                    </div>
+                    <div class="form-group mt-2">
+                    <input type="text" placeholder="Fullname" name="fullname" class="form-control px-2 w-100" />
+                </div>
+                <div class="form-group mt-2">
+                <h4>email</h4>
+                </div>
+                <div class="form-group mt-2">
+
+                <input type="email" placeholder="Email" name="email" class="form-control px-2 w-100" />
+                </div>
+                <div class="form-group mt-2">
+                    <h4>set password</h4>
+                    </div>
+                    <div class="form-group mt-2">
+
+                    <input type="password" placeholder="Set a password" name="s_password" class="form-control px-2 w-100" />
+                </div>
+                <div class="form-group mt-2">
+                    <h4>confirm password</h4>
+                    </div>
+                    <div class="form-group mt-2">
+
+                    <input type="password" placeholder="Confirm password" name="c_password" class="form-control px-2 w-100" />
+                </div>
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary w-100">Next</button>    
+                </div>
+            </form>  
+            <hr>
+    <div class="text-center">OR</div>
+       <a href="/login/"><button class="btn btn-outline-primary w-100">Try Loging in</button></a>
+
+    </div>
+
+
+{% endblock content %}

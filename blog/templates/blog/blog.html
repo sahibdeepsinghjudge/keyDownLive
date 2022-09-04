@@ -1,0 +1,178 @@
+{% extends 'home/base.html' %}
+ 
+{% block content %}
+    <div class="bg-white blog-body" style="margin-top: 25px">
+      
+      <div class="container mt-3 py-4">
+        {% if blog %}
+        {% for blog in blog %}
+       
+        <h2 class="mt-4 mb-2">{{blog.blog_title|safe}}</h2>
+        <div class="read-time font-weight-bold ml-2"></div>
+
+        <div class="tags">
+          <input type="hidden" value="{{blog.tags_input}}" class="tags-holder"/>
+        {% if is_trending %}
+        <div class="tag bg-ioslight text-iosred">#trending</div>
+        {% endif %}
+        </div>
+       
+        <div class="conatiner" style="font-size: 12pt;">
+           <input type="text" style="display: none;" id="myInput">
+                    </div>
+                  <p class="mt-2 text-ioswhite">{{blog.blog_brief}}
+                    fa4-heart
+                  </p>  
+                  <div class="mt-2 blog-text">{{blog_content|safe}}
+                  </div> 
+                  <hr>
+                  <div class="text-center">
+                    <form action="" method="POST">
+                      <span value="like"><div style="cursor: pointer; width:30px;height:30px;  border-radius:50%;" class="share  bg-white d-flex justify-content-center shadow-sm "><b><i class="fa fa-heart-o text-danger" aria-hidden="true"></i></b></div>
+
+                    </form>
+                  </div>
+                  
+                  
+                  <div class="creator-details ">
+                    <div class="creator-name py-3 bg-iosgray" >
+                      {{blog.blog_creator.first_name}} {{blog.blog_creator.last_name}},
+                      <span class="text-iosgray ">{{blog.date}}</span>
+
+                    </div>
+
+                      
+                     
+
+                    
+                    
+                    <div class="blog-info-det">
+                        <div class="tools">
+                      {% if request.user == blog.blog_creator %} 
+                      <a href="/{{blog.slug}}/update" style="cursor: pointer; width:30px;height:30px; 
+                       border-radius:50%;" 
+                       class="p-2 bg-white d-flex justify-content-center shadow-sm text-iossuccess">
+                        <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                      <span  class="text-iosred openPOP3 p-2 bg-white d-flex justify-content-center shadow-sm" style="cursor: pointer; width:30px;height:30px;  border-radius:50%;">
+                        <i class="fa fa-trash" aria-hidden="true"></i></span>
+                      {% endif %}
+                      
+                    </div>
+                    
+                    </div>
+                    <br>
+                    <h6 class="mr-2">Share this blog</h6>
+                    <div class="blog-info-det">
+      
+                      <a href="" class="whatsapp"><div style="cursor: pointer; width:30px;height:30px;  border-radius:50%;" class="share  bg-white d-flex justify-content-center shadow-sm text-iosprimary"><b><i class="fa fa-whatsapp" aria-hidden="true"></i></b></div>
+                      </a>
+                      <a href="" class="instagram"><div style="cursor: pointer; width:30px;height:30px;  border-radius:50%;" class="share  bg-white d-flex justify-content-center shadow-sm text-iosprimary"><b><i class="fa fa-instagram" aria-hidden="true"></i></b></div>
+                      </a>
+                      <a href="" class="facebook"><div style="cursor: pointer; width:30px;height:30px;  border-radius:50%;" class="share  bg-white d-flex justify-content-center shadow-sm text-iosprimary"><b><i class="fa fa-facebook" aria-hidden="true"></i></b></div>
+                      </a>
+                      </div>
+                  </div>
+                </div>
+     
+    
+    <br>
+    <div  id="delete">
+      <div class="all">
+        <div class="popup p-2 overflow-hidden">
+          
+        
+        <h2 class="text-iosprimary"><span class="material-icons">delete</span></h2>
+        <p class="text-iosprimary">Would you like to delete this blog?</p>
+        
+         <div class="row mt-2">
+           <div class="col-md-6"><div class="container  taba p-1 rounded"><a href="/{{blog.slug}}/delete/" class="text-iosred" style="cursor: pointer;">Yes</a></div></div>
+           <div class="col-md-6"><div class="container taba p-1 rounded dpp2 "><span class="text-iosprimary" style="cursor: pointer;">No</span></div></div>
+         </div>
+           
+         
+           
+    
+        </div>
+      </div>
+    </div>
+    
+    {% endfor %}
+    {% else %}
+    <div class="container bg-white p-2 rounded mt-3 text-center blog-body">
+
+      <h3>No blogs</h3>
+      <p>Be the first one to write!</p>
+      <button class="btnios-na ios-pr">Create a post</button>
+    </div>
+    {% endif %}
+    <script>
+      $('img').addClass("image-iosfluid");
+      $('img').removeAttr('style');
+      function CopyUrl(){
+        var Url = window.location.href;
+        Url.value = window.location.href;
+        Url.focus();
+        Url.select();  
+        document.execCommand("Copy");
+        alert("Copied");
+    }
+    $(".whatsapp").attr('href',`https://wa.me?text=${encodeURIComponent(window.location.href)}`)
+    $(".facebook").attr('href',`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`)
+
+    $(document).ready(function(){
+      const text = $(".blog-text").text();
+    
+        // javascript program to count no of words
+        // from given input string.
+          var OUT = 0;
+          var IN = 1;
+          
+          // returns number of words in str
+          function countWords( str)
+          {
+            var state = OUT;
+            var wc = 0; // word count
+            var i = 0;
+            while (i < str.length)
+            {
+              if (str[i] == ' ' || str[i] == '\n'||
+                        str[i] == '\t')
+                state = OUT;
+              else if (state == OUT)
+              {
+                state = IN;
+                ++wc;
+              }
+              ++i;
+            }  
+            return wc;
+          }
+          function readTime(text){
+            let read = countWords(text)/238;
+            let readTime;
+            let time;
+            if (read < 1){
+               
+                readTime = "less than a minute"
+                
+            }else{
+              let mins = read.toString().split(".")[0]
+              time = read.toString().split(".")[1]*.60
+              let secs = time
+              readTime = mins+" min read" 
+            }
+            return readTime;
+          }
+          
+          $(".read-time").html(readTime(text))
+    })
+    var tags_holder = $(".tags-holder").val()
+    var tag_Arr = tags_holder.split(',')
+    for(i in tag_Arr){
+      var tag = `<div class="tag bg-ioslight text-iosprimary">
+        #${tag_Arr[i]}
+    </div>`
+      $(".tags").append(tag)
+    }
+    </script>
+    {% endblock content %}

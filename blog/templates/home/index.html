@@ -1,0 +1,175 @@
+{% extends 'home/base.html' %}
+ 
+{% block content %}
+
+    <div class="blog-body" >
+        
+        {% include "home/header_section.html" %}
+
+
+
+        <div class=" pt-4 pb-4 bg-ioswhite">
+            <div class="container">
+            <div class="flex-box">
+               
+                    <h2 class="text-ioswhite py-3" style="font-weight: 600;" id="top">On The Top</h2>
+                   <!-- <span class="material-icons font-weight-bold text-iosred mt-1">
+                        trending_up
+                        </span>-->
+            </div>
+            
+            <div class="blog-data">
+                
+                {% for blog in blogs %}
+                
+                <div class="blog-info-det-main bg-ioswhite p-2">
+                    <a href="blog/{{blog.slug}}/" class="text-iosdark">
+                    <div class="flex-box ">
+                        <h2 class="text-iosgray mr-2 p-2">{{ forloop.counter }}</h2>
+                        <div>
+                        <span class="text-small text-iosdark">{{blog.blog_creator.first_name}}</span>
+                        <span class="tags-{{ forloop.counter }} tags">
+                            <input type="hidden" value="{{blog.tags_input}}" class="tags-holder-{{ forloop.counter }}"/>
+                            <div class="tag text-iosred">#trending</div>
+                        </span>
+                    <div>
+                    <span class="mt-1 title-blog blog-text text-iosdark"><b>{{blog.blog_title}}</b></span>
+                </div>
+                    <span class="text-iosgray">{{blog.date}}</span> 
+                </div>     
+                </div>
+            </a>
+                </div>
+               
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+<div class="bg-white py-4 rounded ">
+    <div class="container">
+
+    <div class="flex-box">
+        <h2 class="text-ioswhite py-3" style="font-weight: 600;">Top Creators </h2>
+    </div>
+
+    <div class="grid-box ">
+        {% for author in authors %}
+        <div class="card mx-3 my-2" style="width: 18rem;">
+            <img class="card-img-top" src="{{author.image}}"  alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><b>{{author.username.first_name}}</b></h5>
+              <p class="card-text">{{author.about}}</p>
+              <a href="profile/{{author.username}}" class="btn btn-dark text-ioslight rounded">More Posts</a>
+            </div>
+          </div >
+        {% endfor  %}
+    </div>
+</div>
+
+</div>
+    <div class="bg-ioswhite py-2">
+    <div class="container">
+    <div class="flex-box">
+        <h2 class="text-ioswhite py-3" style="font-weight: 600;">Trending Tags</h2>
+    </div>
+    <div class="tags grid-box">
+
+
+       
+    {% for tag in tags %}
+    <div class="flex-box border-bottom my-2">
+        <h2 class="text-iosgray mr-2 p-2">{{ forloop.counter }}</h2>
+        <div>
+    <span class="mt-1 title-blog blog-text text-iosprimary">#{{tag.tag_text}}</span>       
+    <div>
+        <span class="text-small text-iosdark">{{tag.tag_uses}} hits</span>
+
+</div>
+</div>     
+</div>
+    {% endfor %}
+
+    </div>
+    
+</div>
+</div>
+
+
+<div class="bg-ioswhite py-2">
+    <div class="container">
+    <div class="flex-box">
+        <h2 class="text-iosdark py-3" style="font-weight: 600;">More Blogs</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {% for blog in all_blogs %}
+            <div class="blog-info-det-main bg-ioswhite p-2 border-bottom" style="min-width:350px;max-width:600px;">
+             <a href="blog/{{blog.slug}}/" class="text-iosdark">
+             <div class="flex-box ">
+                 <h2 class="text-iosgray mr-2 p-2">{{ forloop.counter }}</h2>
+                 <div>
+                 <span class="text-small text-iosdark">{{blog.blog_creator.first_name}}</span>
+                 <span class="tags-{{ forloop.counter }} tags">
+                     <input type="hidden" value="{{blog.tags_input}}" class="tags-holder-{{ forloop.counter }}"/>
+                     <div class="tag text-iosred">#trending</div>
+                 </span>
+             <div>
+             <span class="mt-1 title-blog blog-text text-iosdark"><b>{{blog.blog_title}}</b></span>
+         </div>
+             <span class="text-iosgray">{{blog.date}}</span> 
+         </div>     
+         </div>
+         </a>
+         </div>
+         
+            {% endfor %}
+
+        </div>
+        <div class="col-md-6">
+            {% if request.user.is_authenticated %}
+            <div class="flex-box">
+                <h2 class="text-iosdark py-3" style="font-weight: 600;">About You</h2>
+            </div>
+                <div class="user-log text-center">
+                    <div class="user-img">
+                        <img src="{{userData.image}}" alt="" srcset="" style="width: 250px; object-fit:contain;" class="image-thumbnail">
+                        
+                    </div>
+                    <h5 class="h5">{{request.user.first_name}} {{request.user.last_name}}</h5>
+                        <p class="subs">{{userData.subs}}</p>
+                        <p class="user-about">{{userData.about}}</p>
+
+                        <a href="/users/profile/{{request.user.username}}"><button class="btn btn-dark w-100">Go to profile</button></a>
+                </div>
+            {% else %}
+            <div class="user-log text-center px-3">
+                
+                    <h5>New to <b>keyDown</b></h5>
+                   <a href="/login/"><button class="btn btn-primary w-100 my-2">Login</button></a> 
+                   <a href="/register/"><button class="btn btn-success w-100 mt-2 mb-4">Register</button></a>
+ 
+            </div>
+            {% endif %}
+        </div>
+    </div>
+  
+</div>
+</div>
+
+<script>
+
+    for(var i = 1;i<=6;i++){
+        var tags_holder = $(".tags-holder"+`-${i}`).val()
+        console.log(tags_holder)
+        var tag_Arr = tags_holder.split(',')
+        tag_Arr = tag_Arr.slice(0,4)
+        for(j in tag_Arr){
+        var tag = `<div class="tag text-iosprimary">
+            ${tag_Arr[j]}
+        </div>`
+        $(".tags"+`-${i}`).append(tag)
+        }
+    }
+    
+</script>
+    {% endblock content %}

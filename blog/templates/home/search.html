@@ -1,0 +1,76 @@
+{% extends 'home/base.html' %}
+ 
+{% block content %}
+
+    <div class="blog-body" >
+        <div class=" pt-4 pb-4 bg-ioswhite">
+            <div class="container">
+            <div class="flex-box">
+               
+                    <h2 class="text-ioswhite py-3" style="font-weight: 600;">Search for blogs</h2>
+                   <!-- <span class="material-icons font-weight-bold text-iosred mt-1">
+                        trending_up
+                        </span>-->
+
+            </div>
+
+    <form action="{% url 'search-process' %}" method="POST" class="my-3 form">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="searchQ" id="searchQ" class="form-control w-100 px-2" placeholder="Search for blogs">
+        </div>
+    </form>
+
+            
+            </div>
+            {% if blogs %}
+            <div class="blog-data">
+                
+                {% for blog in blogs %}
+                
+                <div class="blog-info-det-main bg-ioswhite p-2">
+                    <a href="blog/{{blog.slug}}/" class="text-iosdark">
+                    <div class="flex-box ">
+                        <h2 class="text-iosgray mr-2 p-2">{{ forloop.counter }}</h2>
+                        <div>
+                        <span class="text-small text-iosdark">{{blog.blog_creator.first_name}}</span>
+                        <span class="tags-{{ forloop.counter }} tags">
+                            <input type="hidden" value="{{blog.tags_input}}" class="tags-holder-{{ forloop.counter }}"/>
+                            <div class="tag text-iosred">#trending</div>
+                        </span>
+                    <div>
+                    <span class="mt-1 title-blog blog-text text-iosdark"><b>{{blog.blog_title}}</b></span>
+                </div>
+                    <span class="text-iosgray">{{blog.date}}</span> 
+                </div>     
+                </div>
+            </a>
+                </div>
+               
+                {% endfor %}
+            </div>
+            {% else %}
+            <h4 class="h4 text-center text-iosgray">Try Searching Something...</h4>
+            {% endif %}
+            </div>
+        </div>
+
+
+        <script>
+
+            for(var i = 1;i<=6;i++){
+                var tags_holder = $(".tags-holder"+`-${i}`).val()
+                console.log(tags_holder)
+                var tag_Arr = tags_holder.split(',')
+                tag_Arr = tag_Arr.slice(0,4)
+                for(j in tag_Arr){
+                var tag = `<div class="tag text-iosprimary">
+                    ${tag_Arr[j]}
+                </div>`
+                $(".tags"+`-${i}`).append(tag)
+                }
+            }
+            
+        </script>
+
+    {% endblock content %}

@@ -1,0 +1,42 @@
+<nav class="navi border-iosbottom shadow-sm">
+  <label class="logo" style="    font-family: 'Source Serif Pro', sans-serif;
+  ">
+<b><a href="/" class="text-iosdark">keyDown</a></b></label>
+    <label for="check" class="checkbtn">
+      <i class="fa fa-bars"></i>
+    </label>
+  <ul class="menu move-top">
+    <li><a class="home text-iosdark" href="/">Home</a></li>
+    {% if request.user.is_authenticated %}
+    <li><a class="text-iosprimary" href="{% url 'create-blog-one' %}">Create</a></li>
+    <li><a class="text-iosprimary" href="{% url 'search-page' %}">Search</a></li>
+    <li><a class="text-iosdark" href="/users/profile/{{request.user.username}}">{{request.user.first_name}}</a></li>
+    {% else %}
+    <li><a class="login text-iosdark"  href="/login/">Login</a></li>
+    <li><a class="login text-iosdark"  href="/register/">Register</a></li>
+    {% endif %}
+  </ul>
+</nav>
+<br />
+<div class="popup-bg">
+  <div class="all">
+    <div class="popup p-2">
+      <div class="btns ml-2 text-left">
+        <i class="fa fa-circle  text-iosred" aria-hidden="true"></i>
+        <i class="fa fa-circle text-iosyellow" aria-hidden="true"></i>
+        <i class="fa fa-circle text-iossuccess" aria-hidden="true"></i>
+       <!-- <h3 class="text-iosprimary text-center" style="margin-top: -30px;">Settings</h3>-->
+    </div>
+      <ol class="text-left ml-2">
+     <li><a href="">Dashboard</a></li>
+    <li class="mt-2"><a href="">Setup</a></li>
+  <li class="mt-2"><a href="">Logout</a></li>
+</ol>
+    </div>
+
+    <div class="ddp">Cancel</div>
+  </div>
+</div>
+
+
+

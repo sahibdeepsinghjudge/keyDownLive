@@ -1,0 +1,43 @@
+ {% extends 'home/base.html' %}
+ 
+ {% block content %}
+ <div class="container mt-4" >
+     
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }} 
+                {{ form.as_p }}
+                <div class="conatiner">
+                  <button class="btnios-na ios-sp mt-2" type="submit">Save</button>
+                  <strong class="text-danger">Don't forget to save</strong>
+                </div>
+            </form>
+            <span class="text-iosprimary full-screen">Use in fullscreen</span>
+            <br>
+            <span class="text-gray">powered by <a href="">CKEditor</a></span> 
+           
+              
+          
+            <!--<div class="form-group">
+            <input type="text" class="ios-control  p-2" name="title" placeholder="Title max(50)">
+           </div>
+           <div class="form-group">
+            <input type="text" class="ios-control  p-2" name="brief" placeholder="Breif max(50)">
+           </div>
+           <div class="form-group">
+            <textarea class="ios-control-textarea" name="content" cols="95" rows="10"></textarea>
+            
+           </div>
+           <button class="btnios-na ios-pr-red">Draft</button>-->
+          
+           
+  </div>
+    <br>
+    <script>
+        $("p").hide()
+        $('.logo').html(`<b>keyDown</b> editor`)
+        $('.full-screen').on('click',function(){
+            CKEDITOR.tools.callFunction(198,this)
+        })
+    </script>
+{% endblock content %}

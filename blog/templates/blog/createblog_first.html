@@ -1,0 +1,171 @@
+{% extends 'home/base.html' %}
+ 
+{% block content %}
+<style>
+    .side-bar{
+        width: 100%;
+        height: 100%;
+    }
+    .side-bar>li{
+        width: 100%;
+        height: 40px;
+        background-color: #f2f2f1;
+        color: black;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+</style>
+<div class="blog-body bg-ioswhite ">
+
+    <div class="header-section">
+
+        <div class="row">
+            <div class="col-md-6 ">
+                <div class="text-in-header" >
+                    <h1 class="header-heading">Create Post</h1>
+                    <p class="header-para">Stories, Research, blogs and news on keydown</p>
+                </div>
+                
+            </div>
+            <div class="col-md-6 ">
+                <div class="grid-animations text-in-header hide-mobile">
+                    <div class="row">
+                        <div class="col-md-3"><div class="grid-elem">
+                            <div class="shape"><i class="fa fa-circle" aria-hidden="true"></i></div>
+                        </div></div>
+                        <div class="col-md-3"><div class="grid-elem">
+    
+                            <div class="shape"><i class="fa fa-upload" aria-hidden="true"></i></div>
+    
+                        </div>
+                    </div>
+                    <div class="col-md-3"><div class="grid-elem">
+    
+                        <div class="shape"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+    
+                    </div>
+                </div>
+                <div class="col-md-3"><div class="grid-elem">
+    
+                    <div class="shape"><i class="fa fa-star" aria-hidden="true"></i></div>
+    
+                </div>
+            </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-3"><div class="grid-elem">
+                            <div class="shape"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                        </div></div>
+                        <div class="col-md-3"><div class="grid-elem">
+    
+                            <div class="shape"><i class="fa fa-trash" aria-hidden="true"></i></div>
+    
+                        </div>
+                    </div>
+                    <div class="col-md-3"><div class="grid-elem">
+    
+                        <div class="shape"><i class="fa fa-heart" aria-hidden="true"></i></div>
+    
+                    </div>
+                </div>
+                <div class="col-md-3"><div class="grid-elem">
+    
+                    <div class="shape"><i class="fa fa-square" aria-hidden="true"></i></div>
+    
+                </div>
+            </div>
+                    </div>
+    
+    
+                    
+                </div>
+            </div>
+        </div>
+    
+    </div>
+       
+<div class="container py-3 mt-4" style="max-width: 800px;">
+
+    <h2 style="font-weight:600;color:#2400FF;">
+        Post Details
+    </h2>
+    <form action="/upload/" class="form mt-4" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="blog_title">
+                <h4>Title</h4>
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="text" name="blog_title" id="blog_title" class="form-control px-2" placeholder="Give a title to your creation (50 words)">
+        </div>
+            
+        
+        <div class="form-group mt-3">
+            <label for="blog_tags">
+                <h4>Tags</h4>
+           
+            </label>
+        </div>
+        <div class="form-group mb-3">
+
+            <input type="text"  name="blog_tags" id="blog_tags" class="form-control px-2" placeholder="tag1,tag2,tag3">
+            <span class="form-text">Enter tags seprated by comma(,).Eg: tag1,tag2,tag3</span>
+            <div class="tags"></div>
+        </div>
+        <div class="form-group">
+            <label for="blog_breif">
+                <h4>About Post</h4>
+            </label>
+            <br>
+            <textarea  name="blog_breif" id="blog_breif" class="form-control-textarea px-2" rows="5" cols="95" placeholder="Write in about 120 words."></textarea>
+        </div> 
+        <div class="form-group mt-3">
+            <label for="blog_thumbnail">
+                <h4>Thumbnail</h4>
+            </label>
+            </div>
+            <div class="form-group">
+            <input type="link" name="blog_thumbnail_url" class="form-control" id="blog_thumbnail_url"  placeholder="Paste url of thumbnail">
+        </div>
+        <span class="blog_slug"></span>
+        <div class="form-group mt-3">
+            <button class="btn btn-dark w-100" style="background-color: #2400FF;" type="submit">Continue to editor</button>
+        </div>
+    </form>
+
+</div>
+            
+
+
+
+</div>
+<script>
+
+    $(document).ready(function(){
+        $("#blog_tags").focusout(function(){
+            function addTags(){
+                    var tags_holder = $("#blog_tags").val();
+                    console.log(tags_holder)
+                    var tag_Arr = tags_holder.split(',')
+                    for(i in tag_Arr){
+                        var tag = `<div class="tag bg-ioslight text-iosprimary">
+                                    ${tag_Arr[i]}
+                                    </div>`
+                                    $(".tags").append(tag)
+                                }  
+            }
+            addTags()
+        })
+        $("#blog_tags").focusin(function(){
+            $('.tags').html('')
+        })
+      
+    })
+    
+    
+</script>
+{% endblock content %}

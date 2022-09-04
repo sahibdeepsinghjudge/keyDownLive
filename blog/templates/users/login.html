@@ -1,0 +1,85 @@
+{% extends 'home/base.html' %}
+{% load socialaccount %}
+{% block content %}
+<style>
+    .buttons{
+        border:none;
+        border-radius: 10px;
+        width: 350px;
+        max-width: 350px;
+        min-width: 200px;
+        height: 40px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    .facebook{
+        background-color: #4267B2;
+        color: white;
+       
+    }
+    .twitter{
+        background-color: #0a84ff;
+        color: white;
+    }
+    .google{
+        background-color: #fafafa;
+        border: 1px solid black;
+    }
+    .apple{
+        background-color: rgb(2, 2, 2);
+        color: white;
+    }
+    .login-btn{
+        background-color: rgba(255, 255, 255, 0);
+        border:1px solid gray;
+        border-radius: 10px;
+        width: 350px;
+        max-width: 350px;
+        min-width: 200px;
+        height: 40px;
+        font-weight: 600;
+        margin-top: 10px;
+        transition: 0.2s linear;
+    }
+    .login-btn:hover{
+        background-color: #0a84ff;
+        border:none;
+        color: white;
+        transition: 0.2s linear;
+    }
+    .register-btn{
+        background-color: #0a84ff;
+        border:none;
+        color: white;
+    }
+</style>
+<div class="cont-mid mt-4 bg-ioswhite shadow-sm p-4 " style="min-width:350px; border-radius:10px;" >
+            <p>Login to <b>keyDown</b> Account</p>
+            <form action="{% url 'login-auth-view' %}" method="post" class="ios-form">
+                {% csrf_token %}
+                <div class="form-group mt-2">
+                <h4>email</h4>
+                </div>
+                <div class="form-group mt-2">
+                    <input type="text" placeholder="Email" name="email" class="form-control px-2 py-2 w-100" />
+
+                </div>
+                <div class="form-group mt-2">
+                    <h4>password</h4>
+                 </div>
+                <div class="form-group mt-2">
+                    <input type="password" placeholder="Password" name="password" class="form-control px-2 py-2 w-100" />
+                </div>
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </div>
+            </form>  
+            <hr>
+           
+      <!--{% include 'users/social_auth_apps.html' %}-->  
+        <a href="/register/"><button class="btn btn-outline-primary w-100">Create New</button></a>       
+    </div>
+
+
+{% endblock content %}
